@@ -24,7 +24,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 # Get system locale information
 function getLocale()
 {
@@ -35,5 +34,16 @@ function getLocale()
         echo 1
     else
         echo 0
+    fi
+}
+
+# Localization
+function localize()
+{
+    isLocaleCN=`getLocale`
+    if [ "$isLocaleCN" == "1" ];then
+        echo -e $1
+    else
+        echo -e $2
     fi
 }

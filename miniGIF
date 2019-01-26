@@ -25,13 +25,10 @@ source ./utils/locales.sh
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Fetch Environment Information && Global Varibales
-isLocaleCN=`getLocale`
-
-echo $isLocaleCN
+localize '\033[36m ❤ 欢迎使用\033[33m miniGIF\033[36m GIF压缩工具❤\n\033[0m' '\033[36m ❤ Welcome to use\033[33m miniGIF\033[36m gif compressor❤\n\033[0m'
 
 if [ -z "$1" ];then
-    echo "Usage:" $0 "<gif-to-be-compressed>.gif"
+    localize '\033[31m用法:\033[0m '$0' 图片名.gif' 'Usage: '$0' <gif-to-be-compressed>.gif'
     exit
 fi
 
