@@ -10,7 +10,7 @@
 
 # 介绍
 [miniGIF](https://github.com/lolimay/miniGIF)是一款功能强大的 gif 压缩工具，具有友好的 cli 界面。 没有额外的复杂功能，专注于使您的 gif 图像变得更小、更容易与他人分享。在使用过程中遇到任何问题，欢迎提 [issues](https://github.com/lolimay/miniGIF/issues/new)。
-
+<p align="center"><img height="235" src="./docs/images/preview.gif"></p>
 # 安装
 
 切换到 [release](https://github.com/lolimay/miniGIF/releases) 页下载最新版本的 `miniGIF`(不是源代码)。接着你可以通过下面的命令将 `miniGIF` 安装到你的用户 bin 目录:
