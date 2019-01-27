@@ -6,10 +6,6 @@
 [ `.-. .-. |  [  |  [ `.-. |  [  |  | |   ____    | |     |  _|    
  | | | | | |   | |   | | | |   | |  \ `.___]  |  _| |_   _| |_     
 [___||__||__] [___] [___||__] [___]  `._____.'  |_____| |_____|    
-                                                                   
-		    A Powerful GIF Image Compressor
-		      lolima <lolimay@lolimay.cn>
-			    Version: 1.0.0
 ````
 **English | [中文](./docs/README_CN.md)**
 
