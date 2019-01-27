@@ -2,6 +2,7 @@
 
 source ./utils/string.sh
 source ./utils/locales.sh
+source ./utils/ENV.sh
 
 # The MIT License (MIT)
 
@@ -76,20 +77,26 @@ fi
 
 localize '\033[32m[信息] \033[0m压缩前颜色深度: \033[32m'$original_colorspace' 位\033[32m\033[32m\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
 
-localize '\033[32m[信息]\033[0m 请输入压缩后的颜色深度(建议\033[4;35m64\033[0m):'
+
+# get colorspace
+localize '\033[32m[信息]\033[0m 请输入压缩后的颜色深度(默认\033[4;35m64\033[0m):'
 read output_colorspace
+
+if [ -z "$output_colorspace" ];then
+    output_colorspace="64"
+fi
 
 while [ "$output_colorspace" -gt "$original_colorspace" ]
 do
     localize '\033[31m[错误]\033[0m 输入值不能大于当前颜色深度值'
-    localize '\033[32m[信息]\033[0m 请重新输入压缩后的颜色深度(建议\033[4;35m64\033[0m):'
+    localize '\033[32m[信息]\033[0m 请重新输入压缩后的颜色深度(默认\033[4;35m64\033[0m):'
     read output_colorspace
 done
 
 localize '\033[32m[信息]\033[0m 正在压缩中，请稍后...'
 
 gifsicle -O3 $1 --colors $output_colorspace -o $1 > /dev/null 2>&1
-convert $1 -fuzz 10% -layers Optimize $1
+convert $1 -fuzz 20% -layers Optimize $1 > /dev/null 2>&1
 
 localize '\033[32m[信息] \033[0m压缩后颜色深度为: \033[32m'$output_colorspace' 位\033[32m\033[32m\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
 
