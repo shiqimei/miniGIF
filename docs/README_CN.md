@@ -13,7 +13,7 @@
 
 # 安装
 
-切换到 [release](https://github.com/lolimay/miniGIF/releases) 页下载最新版本的 `miniGIF`(不是源代码).接着你可以通过下面的命令将 `miniGIF` 安装到你的用户 bin 目录:
+切换到 [release](https://github.com/lolimay/miniGIF/releases) 页下载最新版本的 `miniGIF`(不是源代码)。接着你可以通过下面的命令将 `miniGIF` 安装到你的用户 bin 目录:
 ````
 sudo chmod +x miniGIF # 添加可执行权限
 sudo cp miniGIF /usr/bin # 安装 miniGIF
