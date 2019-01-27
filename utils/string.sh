@@ -25,7 +25,7 @@
 # String.contains()
 # $1: string to be matched
 # $2: substring
-function contains()
+contains()
 {
     if [ -z "$1" ];then
         return 1
@@ -35,5 +35,14 @@ function contains()
         echo 1
     else
         echo 0
+    fi
+}
+
+isNumber()
+{
+    if grep '^[[:digit:]]*$' <<< "$1";then 
+     echo "1" 
+    else 
+     echo "0" 
     fi
 }

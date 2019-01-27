@@ -40,10 +40,6 @@ IEyTU+3BUAe805MGR9NN+9Cj8FA18kCRVkccFiK2kfqkveP+T9/EBVHWMdHbAQAA" | gunzip
         localize '\n\t\t\t\b\b\b一款强大的GIF图像压缩工具' '\n\t\t A Powerful GIF Image Compressor'
         localize '\t\t\t\b\b\b\blolimay <lolimay@lolimay.cn>' 'Author: lolimay <lolimay@lolimay.cn> \nVersion: 1.0.0'
         localize '\t\t\t\t\b\b\b\b\b版本: 1.0.0\n' 'Author: lolimay <lolimay@lolimay.cn> \nVersion: 1.0.0'
-        localize '1.基本用法: '$0' 图片名.gif' 'unfinished'
-        localize '2.带参数用法: ' 'ufinished'
-        localize '\t-[1|2|3|4|5] \t压缩级别(1最低5最高，默认为3)' 'ufinished'
-        localize '\t-h \t\t查看帮助信息' 'ufinished'
         exit 0
         ;;
     esac

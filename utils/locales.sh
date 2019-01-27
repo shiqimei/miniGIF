@@ -47,3 +47,14 @@ localize()
         echo -e $2
     fi
 }
+
+# Localization with nowrap
+localize_n()
+{
+    isLocaleCN=`getLocale`
+    if [ "$isLocaleCN" == "1" ];then
+        echo -ne $1
+    else
+        echo -ne $2
+    fi
+}
