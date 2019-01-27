@@ -31,7 +31,7 @@ miniGIF *.gif
 - Do not support gif filename with space. (Please rename first)
 
 # Acknowledgements
-`miniGIF` is a wrapper for `gifsicle` and `imagemagick`, thanks to thses two famous projects。
+`miniGIF` is a wrapper for `gifsicle` and `imagemagick`, thanks to thses two famous projects.
 
 | Project | License |
 | :-: | :-: |
