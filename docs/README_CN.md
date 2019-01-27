@@ -21,7 +21,7 @@ sudo cp miniGIF /usr/bin # 安装 miniGIF
 
 现在你可以在任何路径下使用 `miniGIF`。
 
-# 用法
+# 使用
 如果没有安装 `miniGIF`,你可以通过下面的方式使用 `miniGIF`:
 ````bash
 # 需要确保先切换到包含 miniGIF 文件的路径下
