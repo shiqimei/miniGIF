@@ -15,7 +15,7 @@
 
 # Installation
 
-Go to release page and download the latest version(not source code). And you can run below commands to move `miniGIF` to the user bin directory:
+Go to [release](https://github.com/lolimay/miniGIF/releases) page and download the latest version(not source code). And you can run below commands to move `miniGIF` to the user bin directory:
 ````
 sudo cp miniGIF /usr/bin
 ````
