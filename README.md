@@ -9,9 +9,12 @@
 ````
 **<p align="center">English | <a href="./docs/README_CN.md">中文</a></p>**
 
+# Introduction
+[miniGIF](https://github.com/lolimay/miniGIF) is a powerful gif compressor with user friendly cli interface. No extra complex functions, focusing on making your gif image become smaller and easier to share with others.
+
 # Installation
 
-Go to release page and download the latest version(not source code). And you run below commands to move `miniGIF` to user bin directory:
+Go to release page and download the latest version(not source code). And you can run below commands to move `miniGIF` to the user bin directory:
 ````
 sudo cp miniGIF /usr/bin
 ````
