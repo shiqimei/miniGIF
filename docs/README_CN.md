@@ -32,6 +32,7 @@ miniGIF *.gif
 
 # 鸣谢
 `miniGIF` 是对 `gifsicle` 和 `imagemagick` 的封装，感谢这两个著名的项目。
+
 | 项目名 | 协议 |
 | :-: | :-: |
 | [gifsicle](https://github.com/kohler/gifsicle) | GPLv2 |
