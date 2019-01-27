@@ -10,7 +10,7 @@
 **<p align="center">English | <a href="./docs/README_CN.md">中文</a></p>**
 
 # Introduction
-[miniGIF](https://github.com/lolimay/miniGIF) is a powerful gif compressor with user friendly cli interface. No extra complex functions, focusing on making your gif image become smaller and easier to share with others.
+[miniGIF](https://github.com/lolimay/miniGIF) is a powerful unix gif compressor with user friendly cli interface. No extra complex functions, focusing on making your gif image become smaller and easier to share with others.
 
 # Installation
 
