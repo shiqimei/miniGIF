@@ -70,7 +70,7 @@ fi
 original_size=`stat -c "%s" $1`
 original_size_kb=`echo "scale=2; $original_size/1024" | bc`
 original_size_mb=`echo "scale=2; $original_size/1048576" | bc`
-original_size_mb_flag=`awk 'BEGIN{ print '$original_size_kb'>=1024 }'`
+original_size_mb_flag=`awk -v a="$original_size_kb" -v b="1024" 'BEGIN{print(a>=b)}'`
 original_colorspace=`identify $1 | awk '{print $7}' | sed -n '1p' | tr -cd "[0-9]"`
 
 localize '\033[32m[信息] \033[0m文件名: \033[32m'$1'\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
@@ -177,7 +177,7 @@ localize '\033[32m[信息] \033[0m输出文件名: \033[32m'$output_full_filenam
 output_size=`stat -c "%s" $output_full_filename`
 output_size_kb=`echo "scale=2; $output_size/1024" | bc`
 output_size_mb=`echo "scale=2; $output_size/1048576" | bc`
-output_size_mb_flag=`awk 'BEGIN{ print '$output_size_kb'>=1024 }'`
+output_size_mb_flag=`awk -v a="$output_size_kb" -v b="1024" 'BEGIN{print(a>=b)}'`
 compresions_rate=`echo "scale=2; 100*$output_size/$original_size" | bc`
 
 if [ "$original_size_mb_flag" -eq 1 ];then
