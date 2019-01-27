@@ -11,6 +11,8 @@
 		      lolima <lolimay@lolimay.cn>
 			    Version: 1.0.0
 ````
+**English | [中文](./docs/README_CN.md)**
+
 # Installation
 
 Go to release page and download the latest version(not source code). And you run below commands to move `miniGIF` to user bin directory:
@@ -29,3 +31,12 @@ If it was installed to the user bin directory, you can simply run `miniGIF` like
 ````bash
 miniGIF *.gif
 ````
+# Known BUGs
+- Do not support gif filename with space. (Please rename first)
+
+# Acknowledgements
+`miniGIF` is a wrapper for `gifsicle` and `imagemagick`, thanks to thses two famous projects。
+| Project | License |
+| :-: | :-: |
+| [gifsicle](https://github.com/kohler/gifsicle) | GPLv2 |
+| [imagemagick](https://github.com/ImageMagick/ImageMagick) | [Own License](https://imagemagick.org/script/license.php) |
