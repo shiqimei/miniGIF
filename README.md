@@ -32,6 +32,7 @@ miniGIF *.gif
 
 # Acknowledgements
 `miniGIF` is a wrapper for `gifsicle` and `imagemagick`, thanks to thses two famous projects。
+
 | Project | License |
 | :-: | :-: |
 | [gifsicle](https://github.com/kohler/gifsicle) | GPLv2 |
