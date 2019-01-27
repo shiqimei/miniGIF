@@ -88,6 +88,9 @@ localize '\033[32m[信息] \033[0m颜色位数: \033[32m'$original_colorspace' �
 localize '\033[32m[信息]\033[0m 请输入压缩后的颜色位数(默认\033[4;35m128\033[0m):' '\033[32m[INFO]\033[0m Please enter the output colorspace (default\033[4;35m128\033[0m):'
 localize_n '\033[36m[输入]\033[0m\t\b' '\033[36m[Input]\033[0m\t\b'
 read output_colorspace
+if [ "$output_colorspace" == "exit" ];then
+    exit 0
+fi
 
 # Check output colorspace if it is a number
 isNum=`isNumber $output_colorspace`
@@ -97,13 +100,16 @@ do
     localize_n '\033[32m[信息]\033[0m 请重新输入:\n' '\033[32m[INFO]\033[0m Please re-enter:\n'
     localize_n '\033[36m[输入]\033[0m\t\b' '\033[36m[Input]\033[0m\t\b'
     read output_colorspace
+    if [ "$output_colorspace" == "exit" ];then
+        exit 0
+    fi
     isNum=`isNumber $output_colorspace`
 done
 
 if [ -z "$output_colorspace" ];then
     output_colorspace="128"
     echo -en "\e[1A"
-    localize '\033[36m[输入]\033[0m 使用默认值\033[35m128\033[0m' '\033[36m[Input]\033[0m Use default value \033[35m128\033[0m'
+    localize '\033[36m[输入]\033[0m 使用默认值\033[35m128\033[0m' '\033[36m[Input]\033[0mUse default value \033[35m128\033[0m.'
 fi
 
 while [ "$output_colorspace" -gt "$original_colorspace" ]
@@ -112,12 +118,18 @@ do
     localize_n '\033[32m[信息]\033[0m 请重新输入:' '\033[32m[INFO]\033[0m Please re-enter the output colorspace (default\033[4;35m128\033[0m):'
     localize_n '\033[36m[输入]\033[0m\t\b' '\n\033[36m[Input]\033[0m\t\b'
     read output_colorspace
+    if [ "$output_colorspace" == "exit" ];then
+        exit 0
+    fi
 done
 
 # get compress level
 localize '\033[32m[信息]\033[0m 请输入压缩级别[1|2|3|4|5|6|7] (默认\033[4;35m4\033[0m):' '\033[32m[INFO]\033[0m Please input compression level[1|2|3|4|5|6|7] (default\033[4;35m4\033[0m):'
-localize_n '\033[36m[输入]\033[0m\t\b'
+localize_n '\033[36m[输入]\033[0m\t\b' '\033[36m[Input]\033[0m\t\b'
 read compress_level
+if [ "$compress_level" == "exit" ];then
+    exit 0
+fi
 
 # Check compression level if it is a number
 isNum=`isNumber $compress_level`
@@ -127,24 +139,30 @@ do
     localize_n '\033[32m[信息]\033[0m 请重新输入:\n' '\033[32m[INFO]\033[0m Please re-enter:\n'
     localize_n '\033[36m[输入]\033[0m\t\b' '\033[36m[Input]\033[0m\t\b'
     read compress_level
+    if [ "$compress_level" == "exit" ];then
+        exit 0
+    fi
     isNum=`isNumber $compress_level`
 done
 
 if [ -z "$compress_level" ];then
     compress_level="4"
     echo -en "\e[1A"
-    localize '\033[36m[输入]\033[0m 使用默认值\033[35m4\033[0m'
+    localize '\033[36m[输入]\033[0m 使用默认值\033[35m4\033[0m' '\033[36m[Input]\033[0mUse default value \033[35m4\033[0m.'
 fi
 
 while [[ $compress_level -gt 7 || $compress_level -lt 1 ]]
 do
-    localize '\033[31m[错误]\033[0m 输入值不合法'
-    localize '\033[32m[信息]\033[0m 请输入一个 1~7 之间的数(默认\033[4;35m4\033[0m):'
-    localize_n '\033[36m[输入]\033[0m\t\b'
+    localize '\033[31m[错误]\033[0m 输入值不合法' '\033[31m[ERROR]\033[0mThe input value is invalid.'
+    localize '\033[32m[信息]\033[0m 请输入一个 1~7 之间的数(默认\033[4;35m4\033[0m):' '\033[32m[INFO]\033[0m Please enter a number between 1~7.(default\033[4;35m4\033[0m):'
+    localize_n '\033[36m[输入]\033[0m\t\b' '\033[36m[Input]\033[0m\t\b'
     read compress_level
+    if [ "$compress_level" == "exit" ];then
+        exit 0
+    fi
 done
 
-localize '\033[32m[信息]\033[0m 正在压缩中，请稍后...'
+localize '\033[32m[信息]\033[0m 正在压缩中，请稍候...' '\033[32m[INFO]\033[0m Compressing, please wait...'
 
 # Compression #phase1
 
@@ -154,7 +172,7 @@ else
     mv $1 $output_full_filename
 fi
 
-echo "### DEBUG #### colorspace="$output_colorspace "level="$compress_level
+# echo "### DEBUG #### colorspace="$output_colorspace "level="$compress_level
 # Compression $phase2
 case $compress_level in
     1)
@@ -194,7 +212,7 @@ case $compress_level in
         ;;
 esac
 
-localize '\033[32m[信息] \033[0m输出文件名: \033[32m'$output_full_filename'\033[0m' 'unfinished'
+localize '\033[32m[信息] \033[0m输出文件名: \033[32m'$output_full_filename'\033[0m' '\033[32m[INFO] \033[0mOutput Filename: \033[32m'$output_full_filename'\033[0m'
 # get output gif image size
 output_size=`stat -c "%s" $output_full_filename`
 output_size_kb=`echo "scale=2; $output_size/1024" | bc`
@@ -203,10 +221,10 @@ output_size_mb_flag=`awk -v a="$output_size_kb" -v b="1024" 'BEGIN{print(a>=b)}'
 compresions_rate=`echo "scale=2; 100*$output_size/$original_size" | bc`
 
 if [ "$original_size_mb_flag" -eq 1 ];then
-    localize '\033[32m[信息] \033[0m输出大小: \033[32m'$output_size_mb' MB\033[32m\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+    localize '\033[32m[信息] \033[0m输出大小: \033[32m'$output_size_mb' MB\033[32m\033[0m' '\033[32m[INFO] \033[0mOutput Size: \033[32m'$output_size_mb' MB\033[32m\033[0m'
 else
-    localize '\033[32m[信息] \033[0m输出大小: \033[32m'$output_size_kb' KB\033[32m\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+    localize '\033[32m[信息] \033[0m输出大小: \033[32m'$output_size_kb' KB\033[32m\033[0m' '\033[32m[INFO] \033[0mOutput Size: \033[32m'$output_size_kb' KB\033[32m\033[0m'
 fi
 
-localize '\033[32m[信息] \033[0m输出颜色位数: \033[32m'$output_colorspace' 位\033[32m\033[32m\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
-localize '\033[32m[信息] \033[0m压缩率: \033[32m'$compresions_rate' %\033[32m\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+localize '\033[32m[信息] \033[0m输出颜色位数: \033[32m'$output_colorspace' 位\033[32m\033[32m\033[0m' '\033[32m[INFO] \033[0mOutput Colorspace: \033[32m'$output_colorspace' bit\033[32m\033[32m\033[0m'
+localize '\033[32m[信息] \033[0m压缩率: \033[32m'$compresions_rate' %\033[32m\033[0m' '\033[32m[INFO] \033[0mCompression Ratio: \033[32m'$compresions_rate' %\033[32m\033[0m'
