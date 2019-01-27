@@ -7,7 +7,7 @@
                            | | | | | |   | |   | | | |   | |  \ `.___]  |  _| |_   _| |_     
                           [___||__||__] [___] [___||__] [___]  `._____.'  |_____| |_____|    
 ````
-**English | [中文](./docs/README_CN.md)**
+**<p align="center">English | <a href="./docs/README_CN.md">中文</a></p>**
 
 # Installation
 
