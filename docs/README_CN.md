@@ -8,6 +8,9 @@
 ````
 **<p align="center"><a href="https://github.com/lolimay/miniGIF"> English </a> | 中文</p>**
 
+# 介绍
+[miniGIF](https://github.com/lolimay/miniGIF)是一款功能强大的 gif 压缩工具，具有友好的 cli 界面。 没有额外的复杂功能，专注于使您的 gif 图像变得更小、更容易与他人分享。
+
 # 安装
 
 切换到 [release](https://github.com/lolimay/miniGIF/releases) 页下载最新版本的 `miniGIF`(不是源代码).接着你可以通过下面的命令将 `miniGIF` 安装到你的用户 bin 目录:
