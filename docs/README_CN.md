@@ -15,6 +15,7 @@
 
 切换到 [release](https://github.com/lolimay/miniGIF/releases) 页下载最新版本的 `miniGIF`(不是源代码).接着你可以通过下面的命令将 `miniGIF` 安装到你的用户 bin 目录:
 ````
+sudo chmod +x miniGIF # 添加可执行权限
 sudo cp miniGIF /usr/bin # 安装 miniGIF
 ````
 
@@ -24,6 +25,7 @@ sudo cp miniGIF /usr/bin # 安装 miniGIF
 如果没有安装 `miniGIF`,你可以通过下面的方式使用 `miniGIF`:
 ````bash
 # 需要确保先切换到包含 miniGIF 文件的路径下
+sudo chmod +x miniGIF # 添加可执行权限
 ./miniGIF *.gif # *.gif 是你需要压缩的 gif 文件名
 ````
 如果已经通过上面的方式安装了 `miniGIF`，你可以简单地通过下面的方式使用它:
