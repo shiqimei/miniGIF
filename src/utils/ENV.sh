@@ -37,9 +37,9 @@ while getopts "h?vf:" opt; do
         base64 -d <<<"H4sICAFTTVwCA2xvZ28udHh0AJ1QSxaEIAzbc4rsnFmIB0JfPUgPb9oCA6Mrq/0kkPgqMIc8Y/Ho
 U2dsTH+Sj3wfcF7gt5Wv67V25xI/lNc1W6KyqFzHm5kAO6UwkTe4j3Gp4My8bsmjgqjnhEPVlvl5
 IEyTU+3BUAe805MGR9NN+9Cj8FA18kCRVkccFiK2kfqkveP+T9/EBVHWMdHbAQAA" | gunzip
-        localize '\n\t\t\t\b\b\b一款强大的GIF图像压缩工具' '\n\t\t A Powerful GIF Image Compressor'
-        localize '\t\t\t\b\b\b\blolimay <lolimay@lolimay.cn>' 'Author: lolimay <lolimay@lolimay.cn> \nVersion: 1.0.0'
-        localize '\t\t\t\t\b\b\b\b\b版本: 1.0.0\n' 'Author: lolimay <lolimay@lolimay.cn> \nVersion: 1.0.0'
+        localize '\n\t\t\t\b\b\b一款强大的GIF图像压缩工具' '\n\t\t\t\b\b\bA Powerful GIF Image Compressor'
+        localize '\t\t\t\b\b\b\blolimay <lolimay@lolimay.cn>' '\t\t\t\blolimay\b <lolimay@lolimay.cn>'
+        localize '\t\t\t\t\b\b\b\b\b版本: 1.0.0\n' '\t\t\t\t\b\b\bVersion: 1.0.0\n'
         exit 0
         ;;
     esac

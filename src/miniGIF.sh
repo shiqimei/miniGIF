@@ -32,23 +32,23 @@ is_gifsicle_installed=`which gifsicle`
 is_convert_installed=`which convert`
 
 if [ -z "$is_gifsicle_installed" ];then
-    localize '\033[32m[信息] 依赖 gifsicle 未安装，开始尝试为你自动安装...\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+    localize '\033[33m[警告]\033[0m 依赖 gifsicle 未安装.\n\033[32m[信息]\033[0m 请输入用户密码以继续安装.\033[0m' '\033[33m[WARNING]\033[0m Dependency gifsicle was not installed.\n\033[32m[INFO]\033[0m Please enter your password to continue the installation.\033[0m'
     sudo apt install gifsicle -y
 fi
 
 if [ -z "$is_convert_installed" ];then
-    localize '\033[32m[信息] 依赖 imagemagick 未安装，开始尝试为你自动安装...\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+    localize '\033[33m[警告]\033[0m 依赖 imagemagick 未安装.\n\033[32m[信息]\033[0m 请输入用户密码以继续安装.\033[0m' '\033[33m[WARNING]\033[0m Dependency imagemagick was not installed.\n\033[32m[INFO]\033[0m Please enter your password to continue the installation.\033[0m'
     sudo apt install imagemagick -y
 fi
 
 
 if [ -z "$1" ];then
-    localize '\033[31m[错误] 未指定需要压缩的GIF文件 \033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+    localize '\033[31m[错误]\033[0m] 未指定需要压缩的GIF文件' '\033[31m[ERROR]\033[0m The file to be compressed was not specified.'
     exit
 fi
 
 if [ ! -f "$1" ];then
-    localize '\033[31m[错误] 指定的GIF文件不存在 \033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+    localize '\033[31m[错误]\033[0m 指定的GIF文件不存在' '\033[31m[ERROR]\033[0m The specified file does not exist.'
     exit 1
 fi
 
@@ -62,7 +62,7 @@ output_extension=`echo "${output_full_filename##*.}"`
 
 # check if this file is *.gif
 if [ ! "$input_extension" == "gif" ];then
-    localize '\033[31m[错误] \033[0m指定的文件不是GIF文件 ' 'unfinished'
+    localize '\033[31m[错误]\033[0m 指定的文件不是GIF文件' '\033[31m[ERROR]\033[0m The specified file is not a gif.'
     exit 1
 fi
 
@@ -73,40 +73,62 @@ original_size_mb=`echo "scale=2; $original_size/1048576" | bc`
 original_size_mb_flag=`awk -v a="$original_size_kb" -v b="1024" 'BEGIN{print(a>=b)}'`
 original_colorspace=`identify $1 | awk '{print $7}' | sed -n '1p' | tr -cd "[0-9]"`
 
-localize '\033[32m[信息] \033[0m文件名: \033[32m'$1'\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+localize '\033[32m[信息] \033[0m文件名: \033[32m'$1'\033[0m' '\033[32m[INFO] \033[0mFilename: \033[32m'$1'\033[0m'
 
 if [ "$original_size_mb_flag" -eq 1 ];then
-    localize '\033[32m[信息] \033[0m文件大小: \033[32m'$original_size_mb' MB\033[32m\033[0m' ''
+    localize '\033[32m[信息] \033[0m文件大小: \033[32m'$original_size_mb' MB\033[32m\033[0m' '\033[32m[INFO] \033[0mFile Size: \033[32m'$original_size_mb' MB\033[32m\033[0m'
 else
-    localize '\033[32m[信息] \033[0m文件大小: \033[32m'$original_size_kb' KB\033[32m\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+    localize '\033[32m[信息] \033[0m文件大小: \033[32m'$original_size_kb' KB\033[32m\033[0m' '\033[32m[INFO] \033[0mFile Size: \033[32m'$original_size_kb' KB\033[32m\033[0m'
 fi
 
-localize '\033[32m[信息] \033[0m颜色位数: \033[32m'$original_colorspace' 位\033[32m\033[32m\033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
+localize '\033[32m[信息] \033[0m颜色位数: \033[32m'$original_colorspace' 位\033[32m\033[32m\033[0m' '\033[32m[INFO] \033[0mColorspace: \033[32m'$original_colorspace' bit\033[32m\033[32m\033[0m'
 
 
 # get colorspace
-localize '\033[32m[信息]\033[0m 请输入压缩后的颜色位数(默认\033[4;35m128\033[0m):'
-localize_n '\033[36m[输入]\033[0m\t\b'
+localize '\033[32m[信息]\033[0m 请输入压缩后的颜色位数(默认\033[4;35m128\033[0m):' '\033[32m[INFO]\033[0m Please enter the output colorspace (default\033[4;35m128\033[0m):'
+localize_n '\033[36m[输入]\033[0m\t\b' '\033[36m[Input]\033[0m\t\b'
 read output_colorspace
+
+# Check output colorspace if it is a number
+isNum=`isNumber $output_colorspace`
+while [ "$isNum" == 0 ]
+do
+    localize '\033[31m[错误]\033[0m 输入的不是数字' '\033[31m[ERROR]\033[0mThe input is not a number.'
+    localize_n '\033[32m[信息]\033[0m 请重新输入:\n' '\033[32m[INFO]\033[0m Please re-enter:\n'
+    localize_n '\033[36m[输入]\033[0m\t\b' '\033[36m[Input]\033[0m\t\b'
+    read output_colorspace
+    isNum=`isNumber $output_colorspace`
+done
 
 if [ -z "$output_colorspace" ];then
     output_colorspace="128"
     echo -en "\e[1A"
-    localize '\033[36m[输入]\033[0m 使用默认值\033[35m128\033[0m'
+    localize '\033[36m[输入]\033[0m 使用默认值\033[35m128\033[0m' '\033[36m[Input]\033[0m Use default value \033[35m128\033[0m'
 fi
 
 while [ "$output_colorspace" -gt "$original_colorspace" ]
 do
-    localize '\033[31m[错误]\033[0m 输入值不能大于当前值'
-    localize_n '\033[32m[信息]\033[0m 请重新输入输出颜色位数(默认\033[4;35m128\033[0m):'
-    localize_n '\033[36m[输入]\033[0m\t\b'
+    localize '\033[31m[错误]\033[0m 输入值不能大于当前值' '\033[31m[ERROR]\033[0mThe input value cannot be greater than the current value.'
+    localize_n '\033[32m[信息]\033[0m 请重新输入:' '\033[32m[INFO]\033[0m Please re-enter the output colorspace (default\033[4;35m128\033[0m):'
+    localize_n '\033[36m[输入]\033[0m\t\b' '\n\033[36m[Input]\033[0m\t\b'
     read output_colorspace
 done
 
 # get compress level
-localize '\033[32m[信息]\033[0m 请输入压缩级别[1|2|3|4|5|6|7] (默认\033[4;35m4\033[0m):'
+localize '\033[32m[信息]\033[0m 请输入压缩级别[1|2|3|4|5|6|7] (默认\033[4;35m4\033[0m):' '\033[32m[INFO]\033[0m Please input compression level[1|2|3|4|5|6|7] (default\033[4;35m4\033[0m):'
 localize_n '\033[36m[输入]\033[0m\t\b'
 read compress_level
+
+# Check compression level if it is a number
+isNum=`isNumber $compress_level`
+while [ "$isNum" == 0 ]
+do
+    localize '\033[31m[错误]\033[0m 输入的不是数字' '\033[31m[ERROR]\033[0mThe input is not a number.'
+    localize_n '\033[32m[信息]\033[0m 请重新输入:\n' '\033[32m[INFO]\033[0m Please re-enter:\n'
+    localize_n '\033[36m[输入]\033[0m\t\b' '\033[36m[Input]\033[0m\t\b'
+    read compress_level
+    isNum=`isNumber $compress_level`
+done
 
 if [ -z "$compress_level" ];then
     compress_level="4"
