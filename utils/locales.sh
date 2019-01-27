@@ -25,7 +25,7 @@
 # SOFTWARE.
 
 # Get system locale information
-function getLocale()
+getLocale()
 {
     currentLanguage=`echo $LANG`
     isCN=`contains $currentLanguage "zh_CN"`
@@ -38,7 +38,7 @@ function getLocale()
 }
 
 # Localization
-function localize()
+localize()
 {
     isLocaleCN=`getLocale`
     if [ "$isLocaleCN" == "1" ];then

@@ -26,7 +26,6 @@ source ./utils/ENV.sh
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-localize '\033[36m ❤ 欢迎使用\033[33m miniGIF\033[36m GIF压缩工具❤\n\033[0m' '\033[36m ❤ Welcome to use\033[33m miniGIF\033[36m gif compressor❤\n\033[0m'
 
 # Install Dependencies
 is_gifsicle_installed=`which gifsicle`
@@ -44,7 +43,6 @@ fi
 
 if [ -z "$1" ];then
     localize '\033[31m[错误] 未指定需要压缩的GIF文件 \033[0m' 'Usage: '$0' <gif-to-be-compressed>.gif'
-    localize '使用方法: '$0' 图片名.gif' 'Usage: '$0' <gif-to-be-compressed>.gif'
     exit
 fi
 
