@@ -24,7 +24,7 @@ sudo cp miniGIF /usr/bin
 And now you can use `miniGIF` in any path.
 
 # Usase
-If not installed, you can use `miniGIF` as following command:
+If not installed, you can use `miniGIF` as following steps:
 ````bash
 sudo chmod +x miniGIF # add executable permission
 ./miniGIF *.gif # *.gif is the gif filename you want to compress
