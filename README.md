@@ -18,7 +18,7 @@
 Go to [release](https://github.com/lolimay/miniGIF/releases) page and download the latest version(not source code). And you can run below commands to move `miniGIF` to the user bin directory:
 ````
 sudo chmod +x miniGIF # add executable permission
-sudo cp miniGIF /usr/bin
+sudo cp -r miniGIF /usr/bin
 ````
 
 And now you can use `miniGIF` in any path.
